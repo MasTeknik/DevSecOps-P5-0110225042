@@ -1,0 +1,20 @@
+name: Semgrep Custom Rule Analysis
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  semgrep:
+    name: Scan Custom Semgrep Rules
+    runs-on: ubuntu-latest
+    container:
+      image: returntocorp/semgrep
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Run Semgrep Custom Rule
+        run: semgrep scan --config=.semgrep/laravel-rules.yml
