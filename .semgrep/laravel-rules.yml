@@ -1,0 +1,8 @@
+rules:
+  - id: laravel-unsafe-db-raw
+    patterns:
+      - pattern: DB::raw(...)
+    message: "Terdeteksi penggunaan DB::raw() yang berisiko SQL Injection jika memuat input pengguna tanpa sanitasi!"
+    languages:
+      - php
+    severity: WARNING
